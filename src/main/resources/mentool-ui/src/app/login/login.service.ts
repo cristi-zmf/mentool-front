@@ -15,7 +15,7 @@ export class LoginService {
   }
 
   login (username: string, password: string): void {
-    this.http.post('http://localhost:8080/token/generate-token', new LoginRequest(username, password))
+    this.http.post('/api/token/generate-token', new LoginRequest(username, password))
       .subscribe(
         (authentifiedUser: AuthentifiedUser) => {
           localStorage.setItem(CurrentUserService.CURRENT_USER, JSON.stringify(authentifiedUser));

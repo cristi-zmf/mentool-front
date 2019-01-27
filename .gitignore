@@ -64,8 +64,8 @@ yarn-error.log
 # User specific bazel settings
 .bazelrc.user
 
-/dist
-/tmp
-/out-tsc
-/node
+**/dist
+**/tmp
+**/out-tsc
+**/node
 

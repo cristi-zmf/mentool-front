@@ -58,7 +58,7 @@ public class Authority extends BaseEntity<Authority, EmailAddress> implements Us
 
     /*Used by jpa*/
     public Authority() {
-        super(Authority.class, new EmailAddress("bla.bla@bla.com"));
+        super(Authority.class, null);
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 @Repository(value = "userService")
@@ -23,7 +24,7 @@ public class SdjAuthorities implements Authorities {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return sdj.getOne(new EmailAddress(username));
+        return sdj.findById(new EmailAddress(username)).orElseThrow(NoSuchElementException::new);
     }
 
     @Override

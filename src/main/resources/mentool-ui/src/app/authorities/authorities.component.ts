@@ -8,8 +8,8 @@ import {Authority} from "./authority";
   styleUrls: ['./authorities.component.css']
 })
 export class AuthoritiesComponent implements OnInit {
-  dataSource: Authority[];
-  displayedColumns: string[];
+  dataSource: Authority[] = [];
+  displayedColumns: string[] = [];
 
   constructor(private http: HttpClient) {
     this.http = http;
@@ -18,8 +18,12 @@ export class AuthoritiesComponent implements OnInit {
   ngOnInit() {
     this.http.get("/api/authorities").subscribe(
       (authorities: Authority[]) => {
-        authorities.forEach(e => this.dataSource.push(e))
+        console.log(authorities);
+        this.datasource = authorities;
+        //authorities.forEach(e => this.dataSource.push(e))
+        console.log(this.datasource);
         this.displayedColumns = ['email', 'role'];
+        console.log(this.displayedColumns);
       }
     );
   }

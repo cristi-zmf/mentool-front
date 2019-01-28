@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Repository(value = "userService")
 @Primary
 public class SdjAuthorities implements Authorities {
@@ -26,5 +29,10 @@ public class SdjAuthorities implements Authorities {
     @Override
     public Authority add(Authority authority) {
         return sdj.saveAndFlush(authority);
+    }
+
+    @Override
+    public Set<Authority> findAll() {
+        return new HashSet<>(sdj.findAll());
     }
 }

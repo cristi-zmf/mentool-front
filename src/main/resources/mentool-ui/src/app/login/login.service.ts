@@ -18,9 +18,11 @@ export class LoginService {
     this.http.post('/api/token/generate-token', new LoginRequest(username, password))
       .subscribe(
         (authentifiedUser: AuthentifiedUser) => {
+          console.log("luam userul: " + authentifiedUser);
           localStorage.setItem(CurrentUserService.CURRENT_USER, JSON.stringify(authentifiedUser));
           this.router.navigate(['user']);
-        }
+        },
+        (err => console.log(err))
       );
   }
 }

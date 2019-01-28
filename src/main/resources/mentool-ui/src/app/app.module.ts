@@ -6,23 +6,35 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {RouterModule} from '@angular/router';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatRippleModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatTableModule
+} from '@angular/material';
 import {UserComponent} from './user/user.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import { AuthoritiesComponent } from './authorities/authorities.component';
+import {JwtInterceptorService} from "./jwt-interceptor.service";
 
 
 const routes = [
   { path: 'login', component: LoginComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'user', component: UserComponent}
+  { path: 'user', component: UserComponent},
+  { path: 'authorities', component: AuthoritiesComponent},
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    AuthoritiesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +50,12 @@ const routes = [
     MatInputModule,
     MatRippleModule,
     MatCardModule,
+    MatTableModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

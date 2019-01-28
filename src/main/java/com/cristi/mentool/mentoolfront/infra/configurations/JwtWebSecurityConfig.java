@@ -28,6 +28,12 @@ import javax.annotation.Resource;
 public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
+    private static final String[] ALLOWED_ENDPOINTS = {"/", "/api/token/generate-token",
+            "/api/token/**", "/login/**", "/**/login/**", "/api/signup",
+            "/v2/api-docs", "/swagger-resources/configuration/ui", "/configuration/ui",
+            "/swagger-resources", "/swagger-resources/configuration/security", "/configuration/security",
+            "/swagger-ui.html", "/webjars/**", "/console-h2/**"
+    };
     @Resource(name = "userService")
     private UserDetailsService userDetailsService;
 
@@ -57,10 +63,7 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
-                        "/login/**", "/api/token/**", "/api/signup",
-                        "/v2/api-docs", "/swagger-resources/configuration/ui", "/configuration/ui",
-                        "/swagger-resources", "/swagger-resources/configuration/security", "/configuration/security",
-                        "/swagger-ui.html", "/webjars/**", "/console-h2/**"
+                        ALLOWED_ENDPOINTS
                 )
                 .permitAll()
                 .anyRequest().authenticated()

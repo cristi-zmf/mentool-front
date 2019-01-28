@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @MentoolRequestMapping
-@RestController
 public class AuthenticationResource {
     private AuthenticationManager authenticationManager;
     private TokenProvider jwtTokenUtil;

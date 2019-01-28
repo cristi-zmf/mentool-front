@@ -2,6 +2,7 @@ package com.cristi.mentool.mentoolfront.exposition;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,5 +13,6 @@ import java.lang.annotation.Target;
 @RequestMapping("/api")
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
+@RestController
 public @interface MentoolRequestMapping {
 }

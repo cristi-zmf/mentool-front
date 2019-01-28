@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CurrentUserService} from "./login/current-user.service";
@@ -23,13 +23,10 @@ export class JwtInterceptorService implements HttpInterceptor{
       console.log('intercepting the request');
       req = req.clone({
         setHeaders: {
-          Authorization: 'Bearer ${loggedUser.token}'
+          Authorization: `Bearer ${loggedUser.token}`
         }
       });
-      return next.handle(req);
-    } else {
-      this.router.navigate(['login']);
-      return;
     }
+    return next.handle(req);
   }
 }

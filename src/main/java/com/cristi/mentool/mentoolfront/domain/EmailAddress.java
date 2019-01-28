@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -21,6 +22,7 @@ import java.util.List;
 @Embeddable
 @JsonSerialize(using = EmailAddress.Serializer.class)
 @JsonDeserialize(using = EmailAddress.Deserializer.class)
+@Proxy(lazy = false)
 public class EmailAddress extends BaseValueObject<EmailAddress> implements Serializable {
     @Email @NotBlank @Column(name = "EMAIL")
     private final String value;

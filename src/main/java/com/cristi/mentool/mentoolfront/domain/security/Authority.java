@@ -4,6 +4,7 @@ import com.cristi.mentool.mentoolfront.domain.BaseEntity;
 import com.cristi.mentool.mentoolfront.domain.EmailAddress;
 import com.cristi.mentool.mentoolfront.domain.Role;
 import com.cristi.mentool.mentoolfront.domain.UniqueId;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

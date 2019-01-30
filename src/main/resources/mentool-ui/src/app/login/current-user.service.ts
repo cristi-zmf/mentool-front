@@ -11,4 +11,7 @@ export class CurrentUserService {
   public getCurrentUser(): AuthentifiedUser {
     return JSON.parse(localStorage.getItem(CurrentUserService.CURRENT_USER));
   }
+  public isAuthenticated(): boolean {
+    return !!this.getCurrentUser();
+  }
 }

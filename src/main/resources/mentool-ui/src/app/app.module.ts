@@ -43,10 +43,6 @@ const routes = [
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: true, useHash: true} // <-- debugging purposes only
-    ),
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

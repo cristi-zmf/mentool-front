@@ -19,6 +19,8 @@ import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AuthoritiesComponent } from './authorities/authorities.component';
 import {JwtInterceptorService} from "./jwt-interceptor.service";
+import {ROUTER_PROVIDERS} from "@angular/router/src/router_module";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 
 const routes = [
@@ -43,7 +45,7 @@ const routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true, useHash: true} // <-- debugging purposes only
     ),
     MatButtonModule,
     MatFormFieldModule,

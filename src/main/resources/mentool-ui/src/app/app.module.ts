@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatMenuModule, MatNavList,
   MatRippleModule,
   MatTableModule
 } from '@angular/material';
@@ -49,6 +49,7 @@ const routes = [
     MatRippleModule,
     MatCardModule,
     MatTableModule,
+    MatMenuModule,
     FormsModule
   ],
   providers: [

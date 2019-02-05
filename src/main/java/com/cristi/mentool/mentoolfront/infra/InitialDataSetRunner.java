@@ -1,6 +1,5 @@
 package com.cristi.mentool.mentoolfront.infra;
 
-import com.cristi.mentool.mentoolfront.domain.EmailAddress;
 import com.cristi.mentool.mentoolfront.domain.Role;
 import com.cristi.mentool.mentoolfront.domain.security.AddNewAuthority;
 import com.cristi.mentool.mentoolfront.exposition.AuthorityCreateCommand;
@@ -24,9 +23,9 @@ public class InitialDataSetRunner implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         AuthorityCreateCommand command = new AuthorityCreateCommand();
-        command.username = new EmailAddress("cristi@cristi.com");
+        command.username = "cristi@cristi.com";
         command.role = Role.ADMIN;
         command.password = "cristi";
         addNewAuthority.addAuthorityFor(command);

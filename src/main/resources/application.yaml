@@ -16,8 +16,8 @@ eureka:
 zuul:
   routes:
     token:
-      serviceId: mentool-back
-      path: /token/**
+      serviceId: persons
+      path: /persons/**
       stripPrefix: false
 
 

@@ -1,6 +1,6 @@
 package com.cristi.mentool.mentoolfront.domain.security;
 
-import com.cristi.mentool.mentoolfront.domain.UniqueId;
+import com.cristi.mentool.mentoolfront.domain.EmailAddress;
 import com.cristi.mentool.mentoolfront.exposition.AuthorityCreateCommand;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AddNewAuthority {
     public Authority addAuthorityFor(AuthorityCreateCommand command) {
         String passwordHash = bcryptEncoder.encode(command.password);
         Authority newAuthority = new Authority(
-                command.username, command.role, passwordHash
+                new EmailAddress(command.username), command.role, passwordHash
         );
 
         return authorities.add(newAuthority);

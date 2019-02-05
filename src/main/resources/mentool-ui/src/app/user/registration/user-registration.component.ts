@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "./user";
+import {UserRegistrationService} from "./user-registration.service";
 
 @Component({
   selector: 'app-user-registration',
@@ -8,16 +9,28 @@ import {User} from "./user";
 })
 export class UserRegistrationComponent implements OnInit {
   model = new User(
-    "test@test.com", "test", 'Donald', 'Duck', '0724123456'
+    '', '', '', '', ''
   );
 
   submitted = false;
+  readonly = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+    this.submitted = true;
+    this.userRegistration.registerUser(this.model).subscribe(
+      () => {
+        this.readonly = true;
+      },
+      () => {
+        console.log('There was a problem saving the user')
+      }
+    )
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
-  constructor() { }
+  constructor(private userRegistration: UserRegistrationService) {
+  }
 
   ngOnInit() {
   }

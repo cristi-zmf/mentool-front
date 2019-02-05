@@ -1,14 +1,15 @@
 package com.cristi.mentool.mentoolfront.exposition;
 
-import com.cristi.mentool.mentoolfront.domain.EmailAddress;
 import com.cristi.mentool.mentoolfront.domain.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class AuthorityCreateCommand {
     @JsonProperty
-    public EmailAddress username;
+    public String username;
     @JsonProperty
     public Role role;
     @JsonProperty

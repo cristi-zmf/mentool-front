@@ -20,6 +20,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthoritiesComponent} from './authorities/authorities.component';
 import {JwtInterceptorService} from "./jwt-interceptor.service";
 import {UserRegistrationComponent} from './user/registration/user-registration.component';
+import { UserConsultComponent } from './user/consult/user-consult.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {UserRegistrationComponent} from './user/registration/user-registration.c
     LoginComponent,
     UserComponent,
     AuthoritiesComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    UserConsultComponent
   ],
   imports: [
     BrowserModule,

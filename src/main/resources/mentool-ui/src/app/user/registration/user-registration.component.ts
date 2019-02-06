@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "./user";
-import {UserRegistrationService} from "./user-registration.service";
+import {User} from "../user";
+import {UserService} from "./user.service";
 
 @Component({
   selector: 'app-user-registration',
@@ -20,19 +20,16 @@ export class UserRegistrationComponent implements OnInit {
     this.userRegistration.registerUser(this.model).subscribe(
       () => {
         this.readonly = true;
-      },
-      () => {
-        console.log('There was a problem saving the user')
       }
-    )
+    );
   }
-
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
-  constructor(private userRegistration: UserRegistrationService) {
+  constructor(private userRegistration: UserService) {
   }
 
   ngOnInit() {
   }
 
+  enterEditMode() {
+    this.readonly=false;
+  }
 }

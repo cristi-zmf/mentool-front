@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AuthentifiedUser} from './authentified-user';
 
 @Injectable({
@@ -6,8 +6,8 @@ import {AuthentifiedUser} from './authentified-user';
 })
 export class CurrentUserService {
   public static CURRENT_USER = 'currentUser';
-
   constructor() { }
+
   public getCurrentUser(): AuthentifiedUser {
     return JSON.parse(localStorage.getItem(CurrentUserService.CURRENT_USER));
   }

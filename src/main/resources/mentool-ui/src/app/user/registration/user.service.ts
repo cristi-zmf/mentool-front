@@ -15,7 +15,7 @@ export class UserService implements Resolve<User>{
     return this.httpClient.post(this.apiPrefix, user, {responseType: "text"})
   }
 
-  getUser(email: string): Observable<User> {
+  getUser(email: string): Observable<any> {
     return this.httpClient.get(this.apiPrefix + `/${email}`);
   }
 

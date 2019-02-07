@@ -12,9 +12,14 @@ export class UserConsultComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   submitted = false;
-  readonly = false;
+  readonly = true;
 
   ngOnInit() {
+    this.userService.getLoggedUser().subscribe(
+      (user: User) => {
+        this.user = user;
+      }
+    )
   }
 
   onSubmit() {

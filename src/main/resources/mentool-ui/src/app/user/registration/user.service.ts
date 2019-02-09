@@ -4,13 +4,14 @@ import {User} from "../user";
 import {Observable} from "rxjs";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {CurrentUserService} from "../../login/current-user.service";
+import {AppSettings} from "../../app-settings";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService implements Resolve<User>{
-  apiPrefix = 'api/users';
-  personsApiPrefix = 'persons/users';
+  apiPrefix = `${AppSettings.API_PREFIX}/users`;
+  personsApiPrefix = `${AppSettings.PERSONS_API_PREFIX}/users`;
   constructor(private httpClient: HttpClient, private currentUser: CurrentUserService) {}
   registerUser(user: User): Observable<string> {
     return this.httpClient.post(this.apiPrefix, user, {responseType: "text"})

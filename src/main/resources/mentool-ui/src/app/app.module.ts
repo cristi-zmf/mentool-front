@@ -10,7 +10,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatPaginatorModule,
   MatRippleModule,
   MatTableModule
 } from '@angular/material';
@@ -20,6 +20,7 @@ import {AuthoritiesComponent} from './authorities/authorities.component';
 import {JwtInterceptorService} from "./jwt-interceptor.service";
 import {UserRegistrationComponent} from './user/registration/user-registration.component';
 import { UserConsultComponent } from './user/consult/user-consult.component';
+import { TrainingSearchComponent } from './training/training-search.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserConsultComponent } from './user/consult/user-consult.component';
     LoginComponent,
     AuthoritiesComponent,
     UserRegistrationComponent,
-    UserConsultComponent
+    UserConsultComponent,
+    TrainingSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { UserConsultComponent } from './user/consult/user-consult.component';
     MatRippleModule,
     MatCardModule,
     MatTableModule,
+    MatPaginatorModule,
     MatMenuModule,
     FormsModule
   ],

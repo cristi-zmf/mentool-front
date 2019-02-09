@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
-import {UserComponent} from "./user/user.component";
 import {AuthoritiesComponent} from "./authorities/authorities.component";
 import {AuthGuardService} from "./login/auth-guard.service";
 import {UserRegistrationComponent} from "./user/registration/user-registration.component";
@@ -9,7 +8,6 @@ import {UserConsultComponent} from "./user/consult/user-consult.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'user', component: UserComponent, canActivate: [AuthGuardService]},
   { path: 'user-registration', component: UserRegistrationComponent},
   { path: 'authorities', component: AuthoritiesComponent, canActivate: [AuthGuardService]},
   { path: 'user-profile', component: UserConsultComponent, canActivate: [AuthGuardService]},

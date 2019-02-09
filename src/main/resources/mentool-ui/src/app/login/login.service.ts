@@ -26,7 +26,7 @@ export class LoginService {
           console.log("luam userul: " + authentifiedUser);
           localStorage.setItem(CurrentUserService.CURRENT_USER, JSON.stringify(authentifiedUser));
           this.userSubject.next(authentifiedUser);
-          this.router.navigate(['user']);
+          this.router.navigate(['user-profile']);
         },
         (err => console.log(err))
       );

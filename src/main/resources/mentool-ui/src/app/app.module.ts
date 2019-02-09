@@ -14,7 +14,6 @@ import {
   MatRippleModule,
   MatTableModule
 } from '@angular/material';
-import {UserComponent} from './user/user.component';
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthoritiesComponent} from './authorities/authorities.component';
@@ -26,7 +25,6 @@ import { UserConsultComponent } from './user/consult/user-consult.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent,
     AuthoritiesComponent,
     UserRegistrationComponent,
     UserConsultComponent

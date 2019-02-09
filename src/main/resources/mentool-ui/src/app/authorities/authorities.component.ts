@@ -32,6 +32,6 @@ export class AuthoritiesComponent implements OnInit {
   }
 
   navigateToUser() {
-    this.router.navigate(['/user'])
+    this.router.navigate(['user-profile'])
   }
 }

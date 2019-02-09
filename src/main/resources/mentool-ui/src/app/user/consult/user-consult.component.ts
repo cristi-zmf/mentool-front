@@ -16,8 +16,8 @@ export class UserConsultComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getLoggedUser().subscribe(
-      (user: User) => {
-        this.user = user;
+      (user: any) => {
+        this.user = new User(user.id, null, user.firstName, user.lastName, user.phoneNumber);
       }
     )
   }

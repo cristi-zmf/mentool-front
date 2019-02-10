@@ -1,12 +1,26 @@
-<app-skill-picker (selectedSkillEmitter)="doSearch($event)"></app-skill-picker>
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+  <div fxLayout="column">
+    <app-skill-picker (selectedSkillEmitter)="doSearch($event)"></app-skill-picker>
+  </div>
+  <div fxLayout="column">
+    <app-datepicker selectDatePlaceHolder="Select start date"
+                    (dateEmitter)="performSearchWithStartDate($event)">
+    </app-datepicker>
+  </div>
+  <div fxLayout="column">
+    <app-datepicker selectDatePlaceHolder="Select end date"
+                    (dateEmitter)="performSearchWithEndDate($event)">
+    </app-datepicker>
+  </div>
+</div>
 
 
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<div class="mat-elevation-z8" *ngIf="dataSource">
-  <table mat-table [dataSource]="dataSource" matSort>
+<div class="mat-elevation-z8">
+  <table mat-table *ngIf="dataSource" [dataSource]="dataSource" matSort>
 
     <!-- ID Column -->
     <ng-container matColumnDef="firstName">
@@ -36,6 +50,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;">
     </tr>
   </table>
-
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>

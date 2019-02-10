@@ -37,9 +37,12 @@ export class TrainingSearchComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  private selectedSkillName: string = null;
+  private selectedStartDate: string = null;
+  private selectedEndDate: string = null;
   constructor(private trainingService: TrainingService) {
-    trainingService.searchTrainings(new TrainingSearchRequest(null, null, null)).subscribe(
+    trainingService.searchTrainings(
+      new TrainingSearchRequest(this.selectedSkillName, this.selectedStartDate, this.selectedEndDate)).subscribe(
       (results: Array<TrainingSearchResult>) => {
         this.dataSource = new MatTableDataSource(results);
         this.dataSource.paginator = this.paginator;
@@ -59,18 +62,37 @@ export class TrainingSearchComponent implements OnInit {
   }
 
   doSearch(skillSelected: Skill) {
-    console.log("selected skill: " + skillSelected.skillName);
-    this.trainingService.searchTrainings(
-      new TrainingSearchRequest(skillSelected.skillName, null, null)
-    ).subscribe(
-      (results: Array<TrainingSearchResult>) => {
-        this.dataSource = new MatTableDataSource(results);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    );
+    this.selectedSkillName = !skillSelected ? null : skillSelected.skillName;
+    this.callSearchService()
+  }
+
+  performSearchWithStartDate(startDateFromPicker: D) {
+    this.selectedStartDate = this.getUpdatedDateInISOFormat(startDateFromPicker);
+    this.callSearchService();
   }
 
 
+  performSearchWithEndDate(endDateFromPicker: D) {
+    this.selectedEndDate = this.getUpdatedDateInISOFormat(endDateFromPicker);
+    this.callSearchService();
+  }
+
+  private getUpdatedDateInISOFormat(date: D): string {
+    console.log(new Date(date).toISOString());
+    return !date ? null : new Date(date).toISOString().replace('Z', '');
+  }
+
+  private callSearchService() {
+    this.trainingService.searchTrainings(
+      new TrainingSearchRequest(this.selectedSkillName, this.selectedStartDate, this.selectedEndDate)
+    ).subscribe(
+      (results: Array<TrainingSearchResult>) => this.updateTable(results)
+    )
+  }
+  private updateTable(results: Array<TrainingSearchResult>) {
+    this.dataSource = new MatTableDataSource(results);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 }
 

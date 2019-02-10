@@ -24,4 +24,9 @@ export class SkillPickerComponent implements OnInit {
   broadcastChange(selectedSkill: MatSelectChange) {
     this.selectedSkillEmitter.emit(selectedSkill.value);
   }
+
+  unselect() {
+    this.selectedSkill = null;
+    this.selectedSkillEmitter.emit(this.selectedSkill);
+  }
 }

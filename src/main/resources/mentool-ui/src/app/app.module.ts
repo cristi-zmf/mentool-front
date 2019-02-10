@@ -7,10 +7,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatNativeDateModule,
   MatPaginatorModule,
   MatRippleModule, MatSelectModule,
   MatTableModule
@@ -25,6 +25,8 @@ import {TrainingSearchComponent} from './training/training-search.component';
 import {SkillPickerComponent} from './skill/skill-picker.component';
 import {ToastrHttpInterceptorService} from "./toastr-http-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
+import { DatepickerComponent } from './datepicker/datepicker.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {ToastrModule} from "ngx-toastr";
     UserRegistrationComponent,
     UserConsultComponent,
     TrainingSearchComponent,
-    SkillPickerComponent
+    SkillPickerComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,9 @@ import {ToastrModule} from "ngx-toastr";
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FlexLayoutModule,
     MatMenuModule,
     ToastrModule.forRoot(),
     FormsModule

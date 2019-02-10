@@ -23,6 +23,8 @@ import {UserRegistrationComponent} from './user/registration/user-registration.c
 import {UserConsultComponent} from './user/consult/user-consult.component';
 import {TrainingSearchComponent} from './training/training-search.component';
 import {SkillPickerComponent} from './skill/skill-picker.component';
+import {ToastrHttpInterceptorService} from "./toastr-http-interceptor.service";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -48,10 +50,12 @@ import {SkillPickerComponent} from './skill/skill-picker.component';
     MatPaginatorModule,
     MatSelectModule,
     MatMenuModule,
+    ToastrModule.forRoot(),
     FormsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ToastrHttpInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

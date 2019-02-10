@@ -3,6 +3,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 
+@import '~ngx-toastr/toastr.css';
+
 
 .mat-table__wrapper .mat-table {
   min-width: auto !important;
@@ -15,4 +17,8 @@
 
 .mat-row {
   width: 100%;
+}
+
+#toast-container > div {
+  opacity:1;
 }

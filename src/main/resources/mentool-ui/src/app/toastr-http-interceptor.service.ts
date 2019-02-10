@@ -7,11 +7,10 @@ import {
   HttpRequest,
   HttpResponse
 } from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {catchError, tap} from "rxjs/operators";
 
-const toastrPossition = {positionClass: 'toast-bottom-center'};
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +28,7 @@ export class ToastrHttpInterceptorService implements HttpInterceptor{
           if (err instanceof HttpErrorResponse) {
             this.toastrService.error(err.message,"Error")
           }
+          return of(err);
         })
     );
   }

@@ -7,12 +7,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {
   MatButtonModule,
-  MatCardModule, MatDatepickerModule,
+  MatCardModule,
+  MatDatepickerModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule, MatNativeDateModule,
+  MatMenuModule,
+  MatNativeDateModule,
   MatPaginatorModule,
-  MatRippleModule, MatSelectModule,
+  MatRippleModule,
+  MatSelectModule,
   MatTableModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -25,7 +28,7 @@ import {TrainingSearchComponent} from './training/training-search.component';
 import {SkillPickerComponent} from './skill/skill-picker.component';
 import {ToastrHttpInterceptorService} from "./toastr-http-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
-import { DatepickerComponent } from './datepicker/datepicker.component';
+import {DatepickerComponent} from './datepicker/datepicker.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({

@@ -66,19 +66,18 @@ export class TrainingSearchComponent implements OnInit {
     this.callSearchService()
   }
 
-  performSearchWithStartDate(startDateFromPicker: D) {
+  performSearchWithStartDate(startDateFromPicker: any) {
     this.selectedStartDate = this.getUpdatedDateInISOFormat(startDateFromPicker);
     this.callSearchService();
   }
 
 
-  performSearchWithEndDate(endDateFromPicker: D) {
+  performSearchWithEndDate(endDateFromPicker: any) {
     this.selectedEndDate = this.getUpdatedDateInISOFormat(endDateFromPicker);
     this.callSearchService();
   }
 
-  private getUpdatedDateInISOFormat(date: D): string {
-    console.log(new Date(date).toISOString());
+  private getUpdatedDateInISOFormat(date: any): string {
     return !date ? null : new Date(date).toISOString().replace('Z', '');
   }
 

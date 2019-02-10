@@ -14,12 +14,14 @@ export class LoginService {
     this.http = http;
     this.router = router;
   }
+
   private userSubject: Subject<AuthentifiedUser> = new Subject();
+
   watchLogin(): Observable<any> {
     return this.userSubject.asObservable();
   }
 
-  login (username: string, password: string): void {
+  login(username: string, password: string): void {
     this.http.post('/api/token/generate-token', new LoginRequest(username, password))
       .subscribe(
         (authentifiedUser: AuthentifiedUser) => {
@@ -30,5 +32,12 @@ export class LoginService {
         },
         (err => console.log(err))
       );
+  }
+
+
+  logout(): void {
+    localStorage.removeItem(CurrentUserService.CURRENT_USER);
+    this.userSubject.next(null);
+    this.router.navigate(['login']);
   }
 }

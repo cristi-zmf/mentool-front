@@ -21,6 +21,7 @@ import {JwtInterceptorService} from "./jwt-interceptor.service";
 import {UserRegistrationComponent} from './user/registration/user-registration.component';
 import { UserConsultComponent } from './user/consult/user-consult.component';
 import { TrainingSearchComponent } from './training/training-search.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TrainingSearchComponent } from './training/training-search.component';
     AuthoritiesComponent,
     UserRegistrationComponent,
     UserConsultComponent,
-    TrainingSearchComponent
+    TrainingSearchComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

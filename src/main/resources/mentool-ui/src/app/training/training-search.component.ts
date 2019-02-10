@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {TrainingSearchResult} from "./training-search-result";
 import {TrainingService} from "./training.service";
 import {TrainingSearchRequest} from "./training-search-request";
+import {Skill} from "../skill/skill";
 
 export interface UserData {
   id: string;
@@ -56,6 +57,20 @@ export class TrainingSearchComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  doSearch(skillSelected: Skill) {
+    console.log("selected skill: " + skillSelected.skillName);
+    this.trainingService.searchTrainings(
+      new TrainingSearchRequest(skillSelected.skillName, null, null)
+    ).subscribe(
+      (results: Array<TrainingSearchResult>) => {
+        this.dataSource = new MatTableDataSource(results);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    );
+  }
+
 
 }
 

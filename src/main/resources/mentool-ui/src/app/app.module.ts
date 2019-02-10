@@ -10,8 +10,9 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatMenuModule, MatPaginatorModule,
-  MatRippleModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatRippleModule, MatSelectModule,
   MatTableModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
@@ -19,8 +20,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthoritiesComponent} from './authorities/authorities.component';
 import {JwtInterceptorService} from "./jwt-interceptor.service";
 import {UserRegistrationComponent} from './user/registration/user-registration.component';
-import { UserConsultComponent } from './user/consult/user-consult.component';
-import { TrainingSearchComponent } from './training/training-search.component';
+import {UserConsultComponent} from './user/consult/user-consult.component';
+import {TrainingSearchComponent} from './training/training-search.component';
+import {SkillPickerComponent} from './skill/skill-picker.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { TrainingSearchComponent } from './training/training-search.component';
     AuthoritiesComponent,
     UserRegistrationComponent,
     UserConsultComponent,
-    TrainingSearchComponent
+    TrainingSearchComponent,
+    SkillPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { TrainingSearchComponent } from './training/training-search.component';
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
     MatMenuModule,
     FormsModule
   ],

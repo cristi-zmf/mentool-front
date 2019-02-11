@@ -18,7 +18,7 @@ import {
   MatSelectModule,
   MatTableModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthoritiesComponent} from './authorities/authorities.component';
 import {JwtInterceptorService} from "./jwt-interceptor.service";
@@ -30,6 +30,7 @@ import {ToastrHttpInterceptorService} from "./toastr-http-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { MentorComponent } from './mentor/mentor.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     UserConsultComponent,
     TrainingSearchComponent,
     SkillPickerComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    MentorComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MatMenuModule,
     ToastrModule.forRoot(),

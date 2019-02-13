@@ -31,6 +31,7 @@ import {ToastrModule} from "ngx-toastr";
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { MentorComponent } from './mentor/mentor.component';
+import { RequiredComponent } from './shared/required.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MentorComponent } from './mentor/mentor.component';
     TrainingSearchComponent,
     SkillPickerComponent,
     DatepickerComponent,
-    MentorComponent
+    MentorComponent,
+    RequiredComponent
   ],
   imports: [
     BrowserModule,

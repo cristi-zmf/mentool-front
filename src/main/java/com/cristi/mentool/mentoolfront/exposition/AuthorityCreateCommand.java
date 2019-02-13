@@ -17,7 +17,6 @@ public class AuthorityCreateCommand {
     @NotEmpty
     public String username;
     @JsonProperty
-    @NotNull
     public Role role;
     @JsonProperty
     @NotEmpty

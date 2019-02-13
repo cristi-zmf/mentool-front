@@ -71,6 +71,6 @@
         </div>
       </label>
     </div>
-    <button class="btn btn-success" type="submit" [disabled]="!mentorForm.valid">Submit</button>
+    <button *ngIf="mode==FormMode.CREATE.toString()" class="btn btn-success" type="submit" [disabled]="!mentorForm.valid">Submit</button>
   </form>
 </div>

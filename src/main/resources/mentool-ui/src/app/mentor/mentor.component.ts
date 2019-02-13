@@ -3,6 +3,8 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {ToastrService} from "ngx-toastr";
 import {MentorService} from "./mentor.service";
 import {HttpResponse} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
+import {FormMode} from "../form-mode.enum";
 
 const urlPattern = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
@@ -21,9 +23,15 @@ export class MentorComponent implements OnInit {
     yearsOfExperience: new FormControl('', [Validators.required]),
     linkedinUrl: new FormControl('', [Validators.pattern(urlPattern)])
   });
-  constructor(private toastrService: ToastrService, private mentorService: MentorService) { }
+
+  private mode: string;
+  private FormMode: FormMode;
+  constructor(private toastrService: ToastrService, private mentorService: MentorService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(
+      routeParams => this.mode = routeParams['mode']
+    )
   }
 
   onSubmit() {

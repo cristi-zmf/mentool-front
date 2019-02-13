@@ -22,22 +22,25 @@ export class MentorComponent implements OnInit {
     private toastrService: ToastrService, private mentorService: MentorService,
     private route: ActivatedRoute, private loginService: LoginService,
     private router: Router
-  ) { }
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
-    console.log("intram aici");
     this.route.params.subscribe(
       routeParams => {
+        this.mentorForm = new MentorForm();
         this.mode = routeParams['mode'];
         this.mentorAddress = routeParams['id'];
+        this.handleFormDataAccordingToComponentMode();
       }
     );
-    this.handleFormDataAccordingToComponentMode();
   }
 
   private handleFormDataAccordingToComponentMode() {
     if (this.mode === 'view' || this.mode === 'edit') {
-      console.log("intram aici");
       this.mentorService.getMentor(this.mentorAddress).subscribe(
         mentorData => {
           this.setFormWithMentorData(mentorData);
@@ -53,7 +56,6 @@ export class MentorComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.mentorForm.value);
     this.mentorService.registerMentor(this.mentorForm.value).subscribe(
       (response: HttpResponse<any>) => {
         this.toastrService.success(response.body, "Registration successful");

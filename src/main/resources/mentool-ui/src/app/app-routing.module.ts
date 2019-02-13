@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'authorities', component: AuthoritiesComponent, canActivate: [AuthGuardService]},
   { path: 'user-profile', component: UserConsultComponent, canActivate: [AuthGuardService]},
   { path: 'mentor/:mode', component: MentorComponent},
+  { path: 'mentor/:mode/:id', component: MentorComponent},
   { path: 'training-search', component: TrainingSearchComponent},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 

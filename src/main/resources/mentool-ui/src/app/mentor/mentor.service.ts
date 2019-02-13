@@ -12,4 +12,9 @@ export class MentorService {
   registerMentor(mentorCommand: any): Observable<any> {
     return this.httpClient.put(`${AppSettings.API_PREFIX}/mentors`, mentorCommand);
   }
+
+  getMentor(mentorAddress: string): Observable<any> {
+    const mentorAddressParsed = mentorAddress.replace('@', '%40');
+    return this.httpClient.get(`${AppSettings.PERSONS_API_PREFIX}/mentors/${mentorAddressParsed}`);
+  }
 }

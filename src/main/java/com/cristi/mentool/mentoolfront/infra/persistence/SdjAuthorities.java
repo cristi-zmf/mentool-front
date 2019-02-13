@@ -36,4 +36,9 @@ public class SdjAuthorities implements Authorities {
     public Set<Authority> findAll() {
         return new HashSet<>(sdj.findAll());
     }
+
+    @Override
+    public boolean exists(EmailAddress address) {
+        return sdj.existsById(address);
+    }
 }

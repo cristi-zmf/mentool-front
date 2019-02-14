@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouteReuseStrategy, RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {AuthoritiesComponent} from "./authorities/authorities.component";
 import {AuthGuardService} from "./login/auth-guard.service";
@@ -7,6 +7,7 @@ import {UserRegistrationComponent} from "./user/registration/user-registration.c
 import {UserConsultComponent} from "./user/consult/user-consult.component";
 import {TrainingSearchComponent} from "./training/training-search.component";
 import {MentorComponent} from "./mentor/mentor.component";
+import {CustomRouteReuseStrategy} from "./custom-reuse-strategy";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -27,7 +28,10 @@ const routes: Routes = [
       routes, { useHash: true} // <-- debugging purposes only
     )
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy}
+  ]
 })
 
 

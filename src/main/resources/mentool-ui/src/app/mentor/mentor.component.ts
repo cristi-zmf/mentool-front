@@ -23,11 +23,7 @@ export class MentorComponent implements OnInit {
     private toastrService: ToastrService, private mentorService: MentorService,
     private route: ActivatedRoute, private loginService: LoginService,
     private router: Router
-  ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function (future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot) {
-      return false;
-    };
-  }
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(

@@ -23,15 +23,10 @@ export class AuthoritiesComponent implements OnInit {
       (authorities: Authority[]) => {
         console.log(authorities);
         this.dataSource = authorities;
-        //authorities.forEach(e => this.dataSource.push(e))
         console.log(this.dataSource);
         console.log(this.displayedColumns);
         this.dataIsAvailable = true;
       }
     );
-  }
-
-  navigateToUser() {
-    this.router.navigate(['user-profile'])
   }
 }

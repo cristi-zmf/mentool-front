@@ -24,4 +24,8 @@ export class MentorForm extends FormGroup{
       linkedinUrl: mentorData.linkedinUrl
     })
   }
+
+  removePasswordControlForViewAndEdit() {
+    this.removeControl('password');
+  }
 }

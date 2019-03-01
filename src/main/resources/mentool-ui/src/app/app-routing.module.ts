@@ -8,12 +8,17 @@ import {UserConsultComponent} from "./user/consult/user-consult.component";
 import {TrainingSearchComponent} from "./training/training-search.component";
 import {MentorComponent} from "./mentor/mentor.component";
 import {CustomRouteReuseStrategy} from "./custom-reuse-strategy";
+import {NgxPermissionsGuard} from "ngx-permissions";
+import {Role} from "./authorities/role.enum";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'user-registration', component: UserRegistrationComponent},
   { path: 'authorities', component: AuthoritiesComponent, canActivate: [AuthGuardService]},
-  { path: 'user-profile', component: UserConsultComponent, canActivate: [AuthGuardService]},
+  { path: 'user-profile', component: UserConsultComponent, data: {permission: {only: Role.USER}}, canActivate: [AuthGuardService, NgxPermissionsGuard]},
+  { path: 'mentor/view', component: MentorComponent, data: {permissions: {only: Role.MENTOR}}, canActivate: [NgxPermissionsGuard]},
+  { path: 'mentor/edit', component: MentorComponent, data: {permissions: {only: Role.MENTOR}}, canActivate: [NgxPermissionsGuard]},
+  { path: 'mentor/create', component: MentorComponent, data: {permissions: {except: Role.LOGGED}}, canActivate: [NgxPermissionsGuard]},
   { path: 'mentor/:mode', component: MentorComponent},
   { path: 'mentor/:mode/:id', component: MentorComponent},
   { path: 'training-search', component: TrainingSearchComponent},

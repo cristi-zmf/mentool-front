@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {CurrentUserService} from "./login/current-user.service";
 import {LoginService} from "./login/login.service";
+import {NgxPermissionsService} from "ngx-permissions";
+import {Role} from "./authorities/role.enum";
+import {AuthentifiedUser} from "./login/authentified-user";
 
 @Component({
   selector: 'app-root',
@@ -10,45 +13,58 @@ import {LoginService} from "./login/login.service";
 export class AppComponent {
   private title = 'mentool-ui';
   private isLoggedIn : boolean;
-  private role: string;
-  private userAddress: string;
-  private mentorViewUrl: string;
-  private personProfileUrl: string;
+  private userRole: string = Role.USER;
+  private mentorRole: string = Role.MENTOR;
+  private loginUrl: string = '/login';
+  private currentUser: AuthentifiedUser;
 
-  constructor(private loginService: LoginService, private currentUserService: CurrentUserService) {
+  constructor(private loginService: LoginService, private currentUserService: CurrentUserService, private permissionService: NgxPermissionsService) {
     this.isLoggedIn = this.currentUserService.isAuthenticated();
+    this.loadAuthenticationContext();
     this.loginService.watchLogin().subscribe(
       () => {
-        console.log("intram pe schimbarea de logare");
         this.isLoggedIn = this.currentUserService.isAuthenticated();
-        this.handleLogin();
+        this.permissionService.flushPermissions();
+        this.loadAuthenticationContext();
+        console.log(this.permissionService.getPermissions());
       }
     )
   }
 
-  private handleLogin() {
+
+  private loadAuthenticationContext() {
     if (this.isLoggedIn) {
-      const authenticatedUser = this.currentUserService.getCurrentUser();
-      this.role = authenticatedUser.role.toString();
-      this.userAddress = authenticatedUser.username;
-      this.setProfileRoute();
+      this.currentUser = this.currentUserService.getCurrentUser();
+      this.permissionService.loadPermissions([this.currentUser.role.valueOf().valueOf(), Role.LOGGED]);
     }
   }
 
-  private setProfileRoute() {
-    switch (this.role) {
-      case 'USER': {
-        this.personProfileUrl = `user-profile`;
-        break;
-      }
-      case 'MENTOR': {
-        this.personProfileUrl = `/mentor/view/${this.userAddress}`;
-        break;
-      }
-    }
+  hasPermission (permission: String): boolean {
+    return !!this.permissionService.getPermission(permission);
+  }
+
+  getUrlForMentorProfile(): string {
+    return this.currentUser ? `/mentor/view/${this.currentUser.username}` : this.loginUrl;
   }
 
   logout() {
     this.loginService.logout();
+    this.permissionService.flushPermissions();
+    this.currentUser = null;
+  }
+
+  getUrlForHome(): string {
+    if (this.currentUser) {
+      switch (this.currentUser.role) {
+        case Role.MENTOR: {
+          return this.getUrlForMentorProfile();
+        }
+        case Role.USER: {
+          return '/user-profile'
+        }
+      }
+    } else {
+      return this.loginUrl;
+    }
   }
 }

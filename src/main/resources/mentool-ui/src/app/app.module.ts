@@ -32,6 +32,7 @@ import {DatepickerComponent} from './datepicker/datepicker.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { MentorComponent } from './mentor/mentor.component';
 import { RequiredComponent } from './shared/required.component';
+import {NgxPermissionsModule} from "ngx-permissions";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { RequiredComponent } from './shared/required.component';
     FlexLayoutModule,
     MatMenuModule,
     ToastrModule.forRoot(),
+    NgxPermissionsModule.forRoot(),
     FormsModule
   ],
   providers: [

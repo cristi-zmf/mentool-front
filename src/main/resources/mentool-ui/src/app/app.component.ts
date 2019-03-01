@@ -40,7 +40,7 @@ export class AppComponent {
     }
   }
 
-  hasPermission (permission: String): boolean {
+  hasPermission (permission: string): boolean {
     return !!this.permissionService.getPermission(permission);
   }
 

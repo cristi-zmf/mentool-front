@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {CurrentUserService} from "../login/current-user.service";
 import {SkillService} from "../skill/skill.service";
 import {Skill} from "../skill/skill";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {TrainingSearchResult} from "../training/training-search-result";
+import {DialogComponent} from "../shared/dialog/dialog.component";
 
 @Component({
   selector: 'app-admin',
@@ -15,10 +16,11 @@ export class AdminComponent implements OnInit {
   skills: Array<Skill>;
   dataSource: MatTableDataSource<Skill>;
   displayedColumns: string[] = ['skillName'];
+  private newSkillName: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private currentUserService: CurrentUserService, private skillsService: SkillService) {
+  constructor(private currentUserService: CurrentUserService, private skillsService: SkillService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -40,4 +42,18 @@ export class AdminComponent implements OnInit {
     }
   }
 
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {name: '', placeholder: 'Skill name'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.newSkillName = result;
+    });
+  }
 }
+
+

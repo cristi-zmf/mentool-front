@@ -9,6 +9,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule,
@@ -16,7 +17,8 @@ import {
   MatPaginatorModule,
   MatRippleModule,
   MatSelectModule,
-  MatTableModule, MatToolbarModule
+  MatTableModule,
+  MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -30,10 +32,11 @@ import {ToastrHttpInterceptorService} from "./toastr-http-interceptor.service";
 import {ToastrModule} from "ngx-toastr";
 import {DatepickerComponent} from './datepicker/datepicker.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import { MentorComponent } from './mentor/mentor.component';
-import { RequiredComponent } from './shared/required.component';
+import {MentorComponent} from './mentor/mentor.component';
+import {RequiredComponent} from './shared/required.component';
 import {NgxPermissionsModule} from "ngx-permissions";
-import { AdminComponent } from './admin/admin.component';
+import {AdminComponent} from './admin/admin.component';
+import {DialogComponent} from './shared/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { AdminComponent } from './admin/admin.component';
     DatepickerComponent,
     MentorComponent,
     RequiredComponent,
-    AdminComponent
+    AdminComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,7 @@ import { AdminComponent } from './admin/admin.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatToolbarModule,
+    MatDialogModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MatMenuModule,
@@ -76,6 +81,7 @@ import { AdminComponent } from './admin/admin.component';
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ToastrHttpInterceptorService, multi: true}
   ],
+  entryComponents: [DialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

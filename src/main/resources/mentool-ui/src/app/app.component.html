@@ -11,6 +11,7 @@
         <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/user-registration">User Registration</a></li>
         <li class="nav-item" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/mentor/create">Mentor Registration</a></li>
         <li class="nav-item" *ngIf="isLoggedIn && hasPermission(mentorRole)"><a class="nav-link" [routerLink]=getUrlForMentorProfile()>Mentor Profile</a></li>
+        <li class="nav-item" *ngIf="isLoggedIn && hasPermission(adminRole)"><a class="nav-link" routerLink="/admin">Admin</a></li>
         <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" (click)="logout()">Log out</a></li>
       </ul>
     </div>

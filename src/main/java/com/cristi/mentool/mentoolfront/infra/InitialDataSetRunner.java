@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Stream;
 
+import static com.cristi.mentool.mentoolfront.domain.Role.ADMIN;
 import static com.cristi.mentool.mentoolfront.domain.Role.MENTOR;
 import static com.cristi.mentool.mentoolfront.domain.Role.USER;
 
@@ -27,6 +28,7 @@ public class InitialDataSetRunner implements ApplicationRunner {
         AuthorityCreateCommand edward = new AuthorityCreateCommand("edward@edward.com", MENTOR, "edward");
         AuthorityCreateCommand john = new AuthorityCreateCommand("john@john.com", MENTOR, "john");
         AuthorityCreateCommand hercules = new AuthorityCreateCommand("hercules@power.com", MENTOR, "power");
-        Stream.of(cristi, linus, edward, john, hercules).forEach(addNewAuthority::addAuthorityFor);
+        AuthorityCreateCommand admin = new AuthorityCreateCommand("admin@admin.com", ADMIN, "admin");
+        Stream.of(cristi, linus, edward, john, hercules, admin).forEach(addNewAuthority::addAuthorityFor);
     }
 }

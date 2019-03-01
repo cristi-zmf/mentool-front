@@ -10,6 +10,7 @@ import {MentorComponent} from "./mentor/mentor.component";
 import {CustomRouteReuseStrategy} from "./custom-reuse-strategy";
 import {NgxPermissionsGuard} from "ngx-permissions";
 import {Role} from "./authorities/role.enum";
+import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'mentor/:mode', component: MentorComponent},
   { path: 'mentor/:mode/:id', component: MentorComponent},
   { path: 'training-search', component: TrainingSearchComponent},
+  { path: 'admin', component: AdminComponent, data: {permissions: {only: Role.ADMIN}}, canActivate: [NgxPermissionsGuard]},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
 ];

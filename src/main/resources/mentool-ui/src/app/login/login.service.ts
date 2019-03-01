@@ -29,10 +29,13 @@ export class LoginService {
           console.log("luam userul: " + authentifiedUser);
           localStorage.setItem(CurrentUserService.CURRENT_USER, JSON.stringify(authentifiedUser));
           this.userSubject.next(authentifiedUser);
-          if (authentifiedUser.role === Role.USER) {
+          const role = authentifiedUser.role;
+          if (role === Role.USER) {
             this.router.navigate(['user-profile']);
-          } else {
+          } else if(role === Role.MENTOR) {
             this.router.navigate([`mentor/view/${authentifiedUser.username}`]);
+          } else {
+            this.router.navigate([`admin`]);
           }
         },
         (err => console.log(err))

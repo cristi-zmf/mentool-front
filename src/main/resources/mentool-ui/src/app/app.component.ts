@@ -15,6 +15,7 @@ export class AppComponent {
   private isLoggedIn : boolean;
   private userRole: string = Role.USER;
   private mentorRole: string = Role.MENTOR;
+  private adminRole: string = Role.ADMIN;
   private loginUrl: string = '/login';
   private currentUser: AuthentifiedUser;
 
@@ -61,6 +62,9 @@ export class AppComponent {
         }
         case Role.USER: {
           return '/user-profile'
+        }
+        case Role.ADMIN: {
+          return '/admin';
         }
       }
     } else {

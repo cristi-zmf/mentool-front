@@ -16,7 +16,7 @@ import {
   MatPaginatorModule,
   MatRippleModule,
   MatSelectModule,
-  MatTableModule
+  MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -33,6 +33,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { MentorComponent } from './mentor/mentor.component';
 import { RequiredComponent } from './shared/required.component';
 import {NgxPermissionsModule} from "ngx-permissions";
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
     SkillPickerComponent,
     DatepickerComponent,
     MentorComponent,
-    RequiredComponent
+    RequiredComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import {NgxPermissionsModule} from "ngx-permissions";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatToolbarModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     MatMenuModule,

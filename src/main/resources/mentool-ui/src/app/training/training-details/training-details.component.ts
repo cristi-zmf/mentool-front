@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainingForm} from "./training-form";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../login/login.service";
-import {TrainingDetailsService} from "./training-details.service";
 import {AbstractControl} from "@angular/forms";
 import {CurrentUserService} from "../../login/current-user.service";
 import {Role} from "../../authorities/role.enum";
+import {TrainingService} from "../training.service";
 
 @Component({
   selector: 'app-training-details',
@@ -20,7 +20,7 @@ export class TrainingDetailsComponent implements OnInit {
   private roleOfUser: string;
 
   constructor(
-    private toastrService: ToastrService, private trainingService: TrainingDetailsService,
+    private toastrService: ToastrService, private trainingService: TrainingService,
     private route: ActivatedRoute, private loginService: LoginService,
     private currentUserService: CurrentUserService
   ) {}
@@ -61,6 +61,17 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
   bookTraining() {
-
+    let bookingCommand: any = {};
+    bookingCommand.trainingId = this.trainingForm.getTrainingId();
+    bookingCommand.traineeEmail = this.currentUserService.getCurrentUser().username;
+    this.trainingService.bookTraining(bookingCommand).subscribe(
+      (booked: boolean )=> {
+        if (booked) {
+          this.toastrService.success('Training was booked!', 'Success');
+        } else {
+          this.toastrService.error('Training could not be booked because there are no more spots left!', 'Failure');
+        }
+      }
+    )
   }
 }

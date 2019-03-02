@@ -66,7 +66,7 @@
     </div>
     <button *ngIf="mode==='create'" class="btn btn-success" type="submit" [disabled]="!trainingForm.valid">Submit</button>
     <button *ngIf="mode==='view' && !hasUserRole()" class="btn btn-success" (click)="enterEditMode()">Edit</button>
-    <button *ngIf="mode==='view' && hasUserRole()" class="btn btn-success" (click)="bookTraining()">Book Training</button>
+    <button *ngIf="mode==='view' && hasUserRole()" class="btn btn-success" type="button" (click)="bookTraining()">Book Training</button>
 
     <button *ngIf="mode==='edit'" class="btn btn-success" type="button" (click)="saveModifications()" [disabled]="!trainingForm.valid">Save</button>
     <button *ngIf="mode==='edit'" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>

@@ -28,4 +28,8 @@ export class TrainingForm extends FormGroup{
       endDate: trainingData.endDate
     })
   }
+
+  public getTrainingId(): string {
+    return this.get('trainingId').value;
+  }
 }

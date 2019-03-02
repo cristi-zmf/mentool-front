@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatPaginator, MatRow, MatSort, MatTableDataSource} from "@angular/material";
 import {TrainingSearchResult} from "./training-search-result";
 import {TrainingService} from "./training.service";
 import {TrainingSearchRequest} from "./training-search-request";
 import {Skill} from "../skill/skill";
+import {Router} from "@angular/router";
 
 export interface UserData {
   id: string;
@@ -28,7 +29,7 @@ export class TrainingSearchComponent implements OnInit {
   private selectedSkillName: string = null;
   private selectedStartDate: string = null;
   private selectedEndDate: string = null;
-  constructor(private trainingService: TrainingService) {
+  constructor(private trainingService: TrainingService, private router: Router) {
     trainingService.searchTrainings(
       new TrainingSearchRequest(this.selectedSkillName, this.selectedStartDate, this.selectedEndDate)).subscribe(
       (results: Array<TrainingSearchResult>) => {
@@ -80,6 +81,10 @@ export class TrainingSearchComponent implements OnInit {
     this.dataSource = new MatTableDataSource(results);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  goToTrainingDetails(row: any) {
+    this.router.navigate([`trainings/view/${row.trainingId}`]);
   }
 }
 

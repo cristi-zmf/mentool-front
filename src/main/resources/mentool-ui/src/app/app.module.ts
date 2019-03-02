@@ -37,6 +37,7 @@ import {RequiredComponent} from './shared/required.component';
 import {NgxPermissionsModule} from "ngx-permissions";
 import {AdminComponent} from './admin/admin.component';
 import {DialogComponent} from './shared/dialog/dialog.component';
+import {TrainingDetailsComponent} from './training/training-details/training-details.component';
 
 @NgModule({
   declarations: [
@@ -49,9 +50,11 @@ import {DialogComponent} from './shared/dialog/dialog.component';
     SkillPickerComponent,
     DatepickerComponent,
     MentorComponent,
+    TrainingDetailsComponent,
     RequiredComponent,
     AdminComponent,
-    DialogComponent
+    DialogComponent,
+    TrainingDetailsComponent
   ],
   imports: [
     BrowserModule,

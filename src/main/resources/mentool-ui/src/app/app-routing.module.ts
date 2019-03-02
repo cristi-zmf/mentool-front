@@ -11,6 +11,7 @@ import {CustomRouteReuseStrategy} from "./custom-reuse-strategy";
 import {NgxPermissionsGuard} from "ngx-permissions";
 import {Role} from "./authorities/role.enum";
 import {AdminComponent} from "./admin/admin.component";
+import {TrainingDetailsComponent} from "./training/training-details/training-details.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'mentor/create', component: MentorComponent, data: {permissions: {except: Role.LOGGED}}, canActivate: [NgxPermissionsGuard]},
   { path: 'mentor/:mode', component: MentorComponent},
   { path: 'mentor/:mode/:id', component: MentorComponent},
+  { path: 'mentor/:mode/:id', component: MentorComponent},
+  { path: 'trainings/:mode/:id', component: TrainingDetailsComponent},
   { path: 'training-search', component: TrainingSearchComponent},
   { path: 'admin', component: AdminComponent, data: {permissions: {only: Role.ADMIN}}, canActivate: [NgxPermissionsGuard]},
   { path: '**', redirectTo: 'login', pathMatch: 'full' }

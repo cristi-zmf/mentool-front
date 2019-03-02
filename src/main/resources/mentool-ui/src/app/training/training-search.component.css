@@ -7,6 +7,10 @@ table {
   width: 100%;
 }
 
+/deep/.mat-row:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
 td, th {
   width: 25%;
 }

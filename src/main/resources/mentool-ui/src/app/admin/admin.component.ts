@@ -62,7 +62,7 @@ export class AdminComponent implements OnInit {
   }
 
   private addSkill(newSkillName: string) {
-    let skillCreateCommand: { skillName: string } = {};
+    let skillCreateCommand: { skillName: string } = {skillName: ''};
     skillCreateCommand.skillName = newSkillName;
     this.skillsService.addSkill(skillCreateCommand).subscribe(
       () => this.getSkillsData()

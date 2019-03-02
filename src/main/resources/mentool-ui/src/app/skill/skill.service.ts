@@ -13,4 +13,8 @@ export class SkillService {
   public getSkills(): Observable<any> {
     return this.httpClient.get(`${AppSettings.PERSONS_API_PREFIX}/skills`);
   }
+
+  public addSkill(skillCreateCommand: any): Observable<any> {
+    return this.httpClient.put(`${AppSettings.PERSONS_API_PREFIX}/skills`, skillCreateCommand);
+  }
 }

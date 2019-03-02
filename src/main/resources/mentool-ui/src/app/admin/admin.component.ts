@@ -20,11 +20,17 @@ export class AdminComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   constructor(private currentUserService: CurrentUserService, private skillsService: SkillService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.username = this.currentUserService.getCurrentUser().username;
+    this.getSkillsData();
+  }
+
+
+  private getSkillsData() {
     this.skillsService.getSkills().subscribe(data => {
       this.skills = data;
       this.dataSource = new MatTableDataSource(this.skills);
@@ -32,7 +38,6 @@ export class AdminComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -52,7 +57,16 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.newSkillName = result;
+      this.addSkill(this.newSkillName);
     });
+  }
+
+  private addSkill(newSkillName: string) {
+    let skillCreateCommand: { skillName: string } = {};
+    skillCreateCommand.skillName = newSkillName;
+    this.skillsService.addSkill(skillCreateCommand).subscribe(
+      () => this.getSkillsData()
+    );
   }
 }
 

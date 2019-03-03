@@ -138,4 +138,8 @@ export class TrainingDetailsComponent implements OnInit {
   shouldDisplayBookButton() {
     return this.hasUserRole() && !this.isBookedByCurrentUser();
   }
+
+  shouldDisplayCancelBookingButton() {
+    return this.hasUserRole() && this.isBookedByCurrentUser();
+  }
 }

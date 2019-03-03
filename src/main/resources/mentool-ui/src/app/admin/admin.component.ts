@@ -56,8 +56,10 @@ export class AdminComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.newSkillName = result;
-      this.addSkill(this.newSkillName);
+      if (result) {
+        this.newSkillName = result;
+        this.addSkill(this.newSkillName);
+      }
     });
   }
 

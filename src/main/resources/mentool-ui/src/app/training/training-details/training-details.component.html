@@ -94,7 +94,7 @@
     <button *ngIf="mode==='view' && shouldDisplayBookButton()" class="btn btn-success" type="button" (click)="bookTraining()">Book
       Training
     </button>
-    <button *ngIf="mode==='view' && !shouldDisplayBookButton()" class="btn btn-danger"
+    <button *ngIf="mode==='view' && shouldDisplayCancelBookingButton()" class="btn btn-danger"
             type="button" (click)="cancelBookingTraining()">
       Cancel Booked Training
     </button>

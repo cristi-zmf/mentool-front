@@ -99,4 +99,12 @@ public class Authority extends BaseEntity<Authority, EmailAddress> implements Us
     public Role getRole() {
         return role;
     }
+
+    public void lockUser() {
+        accountNonLocked = false;
+    }
+
+    public void unlockUser() {
+        accountNonLocked = true;
+    }
 }

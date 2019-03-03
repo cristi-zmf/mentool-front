@@ -41,4 +41,9 @@ public class SdjAuthorities implements Authorities {
     public boolean exists(EmailAddress address) {
         return sdj.existsById(address);
     }
+
+    @Override
+    public Authority findById(EmailAddress address) {
+        return sdj.findById(address).orElseThrow(NoSuchElementException::new);
+    }
 }

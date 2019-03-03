@@ -9,4 +9,5 @@ public interface Authorities extends UserDetailsService {
     Authority add(Authority authority);
     Set<Authority> findAll();
     boolean exists(EmailAddress address);
+    Authority findById(EmailAddress address);
 }

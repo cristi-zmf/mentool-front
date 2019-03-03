@@ -23,7 +23,15 @@ export class TrainingService {
   }
 
   bookTraining(bookingCommand: any): Observable<any> {
-    bookingCommand.traineeEmail = bookingCommand.traineeEmail.replace('@', '%40');
-    return this.httpClient.post(`${AppSettings.PERSONS_API_PREFIX}/calendar/book`, bookingCommand);
+    return this.httpClient.put(`${AppSettings.PERSONS_API_PREFIX}/calendar/book`, bookingCommand);
+  }
+
+  cancelBookingTraining(bookingCommand: any): Observable<any> {
+    return this.httpClient.put(`${AppSettings.PERSONS_API_PREFIX}/calendar/cancel-booking`, bookingCommand);
+  }
+
+  getTrainingsBookedByUser(userEmail: string): Observable<any> {
+    userEmail = userEmail.replace('@', '%40');
+    return this.httpClient.get(`${AppSettings.PERSONS_API_PREFIX}/calendar/${userEmail}/bookings`);
   }
 }

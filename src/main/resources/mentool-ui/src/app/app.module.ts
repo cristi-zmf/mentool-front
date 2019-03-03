@@ -38,6 +38,8 @@ import {NgxPermissionsModule} from "ngx-permissions";
 import {AdminComponent} from './admin/admin.component';
 import {DialogComponent} from './shared/dialog/dialog.component';
 import {TrainingDetailsComponent} from './training/training-details/training-details.component';
+import {BookedTrainingsComponent} from "./user/trainings/booked-trainings.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import {TrainingDetailsComponent} from './training/training-details/training-det
     RequiredComponent,
     AdminComponent,
     DialogComponent,
-    TrainingDetailsComponent
+    TrainingDetailsComponent,
+    BookedTrainingsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import {TrainingDetailsComponent} from './training/training-details/training-det
     MatMenuModule,
     ToastrModule.forRoot(),
     NgxPermissionsModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},

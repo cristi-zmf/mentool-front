@@ -1,6 +1,21 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Booked trainings</h4>
+  </div>
+  <div class="modal-body">
+    <app-booked-trainings (rowClickedEmitter)="modal.close('Save click')"></app-booked-trainings>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+
 <div class="container" *ngIf="user">
   <h1 *ngIf="!readonly">User edit form</h1>
   <h1 *ngIf="readonly">User consultation form</h1>
+  <button *ngIf="readonly" class="btn btn-info" (click)="viewBookedBookings(content)">View booked bookings</button>
+
   <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-group">
       <label for="username">Email Address</label>

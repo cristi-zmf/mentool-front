@@ -11,7 +11,10 @@ export class TrainingForm extends FormGroup{
       noOfTrainingsDone: new FormControl(0, [Validators.required, Validators.pattern("[0-9]")]),
       mentorName: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
-      endDate: new FormControl('', [Validators.required])
+      endDate: new FormControl('', [Validators.required]),
+      fee: new FormControl(0, [Validators.required]),
+      traineesBooked: new FormControl([])
+
     });
   }
 
@@ -25,11 +28,17 @@ export class TrainingForm extends FormGroup{
       noOfTrainingsDone: trainingData.noOfTrainingsDone,
       mentorName: trainingData.mentorName,
       startDate: trainingData.startDate,
-      endDate: trainingData.endDate
+      endDate: trainingData.endDate,
+      fee: trainingData.fee,
+      traineesBooked: trainingData.traineesBooked
     })
   }
 
   public getTrainingId(): string {
     return this.get('trainingId').value;
+  }
+
+  public getTraineesBooked(): Array<string> {
+    return this.get('traineesBooked').value;
   }
 }

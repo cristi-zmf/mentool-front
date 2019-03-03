@@ -15,14 +15,16 @@
       <label>
         Facilities Description:
         <textarea type="text" formControlName="facilitiesDesc" class="form-control" required></textarea>
-        <app-required [form]="trainingForm.get('facilitiesDesc')" errorMessage="Facilities should be described"></app-required>
+        <app-required [form]="trainingForm.get('facilitiesDesc')"
+                      errorMessage="Facilities should be described"></app-required>
       </label>
     </div>
     <div class="form-group">
       <label>
         Prerequisites:
         <textarea type="text" formControlName="prerequisitesDesc" class="form-control" required></textarea>
-        <app-required [form]="trainingForm.get('prerequisitesDesc')" errorMessage="Prerequisites should be described"></app-required>
+        <app-required [form]="trainingForm.get('prerequisitesDesc')"
+                      errorMessage="Prerequisites should be described"></app-required>
       </label>
     </div>
     <div class="form-group">
@@ -64,11 +66,42 @@
         <input type="datetime-local" formControlName="endDate" class="form-control">
       </label>
     </div>
-    <button *ngIf="mode==='create'" class="btn btn-success" type="submit" [disabled]="!trainingForm.valid">Submit</button>
-    <button *ngIf="mode==='view' && !hasUserRole()" class="btn btn-success" (click)="enterEditMode()">Edit</button>
-    <button *ngIf="mode==='view' && hasUserRole()" class="btn btn-success" type="button" (click)="bookTraining()">Book Training</button>
 
-    <button *ngIf="mode==='edit'" class="btn btn-success" type="button" (click)="saveModifications()" [disabled]="!trainingForm.valid">Save</button>
+    <div class="form-group">
+      <label>
+        Price (in USD):
+        <input type="number" formControlName="fee" class="form-control">
+      </label>
+    </div>
+    <div *ngIf="hasMentorRole()">
+      <mat-toolbar>Trainees that booked this training:</mat-toolbar>
+      <br>
+      <div class="form-group">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let trainee of traineesBooked">
+            {{trainee}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="hasUserRole()">
+      <mat-toolbar>{{bookingMessage}}</mat-toolbar>
+    </div>
+    <button *ngIf="mode==='create'" class="btn btn-success" type="submit" [disabled]="!trainingForm.valid">Submit
+    </button>
+    <button *ngIf="mode==='view' && !hasUserRole()" class="btn btn-success" (click)="enterEditMode()">Edit</button>
+    <button *ngIf="mode==='view' && shouldDisplayBookButton()" class="btn btn-success" type="button" (click)="bookTraining()">Book
+      Training
+    </button>
+    <button *ngIf="mode==='view' && !shouldDisplayBookButton()" class="btn btn-danger"
+            type="button" (click)="cancelBookingTraining()">
+      Cancel Booked Training
+    </button>
+
+    <button *ngIf="mode==='edit'" class="btn btn-success" type="button" (click)="saveModifications()"
+            [disabled]="!trainingForm.valid">Save
+    </button>
     <button *ngIf="mode==='edit'" class="btn btn-danger" (click)="cancelEdit()">Cancel</button>
   </form>
 </div>

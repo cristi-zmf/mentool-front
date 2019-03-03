@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../user";
 import {UserService} from "../registration/user.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-consult',
@@ -9,7 +10,8 @@ import {UserService} from "../registration/user.service";
 })
 export class UserConsultComponent implements OnInit {
   @Input() user: User
-  constructor(private userService: UserService) { }
+  private closeResult: any;
+  constructor(private userService: UserService, private modalService: NgbModal) { }
 
   submitted = false;
   readonly = true;
@@ -29,5 +31,13 @@ export class UserConsultComponent implements OnInit {
         this.readonly = true;
       }
     );
+  }
+
+  viewBookedBookings(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: "lg"}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed: ${reason}`;
+    });
   }
 }

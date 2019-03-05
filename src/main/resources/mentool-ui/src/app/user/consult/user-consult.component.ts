@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../user";
 import {UserService} from "../registration/user.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TrainingService} from "../../training/training.service";
+import {CurrentUserService} from "../../login/current-user.service";
+import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-user-consult',
@@ -11,7 +14,12 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class UserConsultComponent implements OnInit {
   @Input() user: User
   private closeResult: any;
-  constructor(private userService: UserService, private modalService: NgbModal) { }
+  private dataSource: MatTableDataSource<any>;
+  private displayedColumns: string[] = ['skillName', 'mentorName', 'facilitiesDesc', 'fee', 'startDate', 'endDate'];
+  constructor(
+    private userService: UserService, private modalService: NgbModal,
+    private trainingService: TrainingService, private currentUserService: CurrentUserService
+  ) { }
 
   submitted = false;
   readonly = true;
@@ -20,8 +28,12 @@ export class UserConsultComponent implements OnInit {
     this.userService.getLoggedUser().subscribe(
       (user: any) => {
         this.user = new User(user.id, null, user.firstName, user.lastName, user.phoneNumber);
+        this.trainingService.getTrainingsBookedByUser(this.user.username).subscribe(
+          data => this.dataSource = new MatTableDataSource(data)
+        );
       }
-    )
+    );
+
   }
 
   onSubmit() {

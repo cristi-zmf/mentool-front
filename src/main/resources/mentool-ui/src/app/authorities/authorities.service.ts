@@ -11,7 +11,7 @@ export class AuthoritiesService {
 
   constructor(private http: HttpClient) { }
 
-  public getAuthorities(): Observable<Authority[]> {
+  public getAuthorities(): Observable<any> {
     return this.http.get(`${AppSettings.API_PREFIX}/authorities`)
   }
 

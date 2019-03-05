@@ -7,6 +7,8 @@ import {AbstractControl} from "@angular/forms";
 import {CurrentUserService} from "../../login/current-user.service";
 import {Role} from "../../authorities/role.enum";
 import {TrainingService} from "../training.service";
+import {Skill} from "../../skill/skill";
+import {MentorService} from "../../mentor/mentor.service";
 
 @Component({
   selector: 'app-training-details',
@@ -24,7 +26,7 @@ export class TrainingDetailsComponent implements OnInit {
   constructor(
     private toastrService: ToastrService, private trainingService: TrainingService,
     private route: ActivatedRoute, private loginService: LoginService,
-    private currentUserService: CurrentUserService
+    private currentUserService: CurrentUserService, mentorService: MentorService
   ) {}
 
   ngOnInit() {
@@ -141,5 +143,25 @@ export class TrainingDetailsComponent implements OnInit {
 
   shouldDisplayCancelBookingButton() {
     return this.hasUserRole() && this.isBookedByCurrentUser();
+  }
+
+  shouldDisplayUsersThatBookedTheTraining() {
+    return this.hasMentorRole() && !this.isCreateMode();
+  }
+
+  private isCreateMode() {
+    return this.mode === 'create';
+  }
+
+  fillSkillField(selectedSkill: Skill) {
+    this.trainingForm.updateSkillField(selectedSkill);
+  }
+
+  fillFormWithStartDate(date: any) {
+    this.trainingForm.updateStartDate(date);
+  }
+
+  fillFormWithEndDate(date: any) {
+    this.trainingForm.updateEndDate(date);
   }
 }

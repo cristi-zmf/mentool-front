@@ -38,8 +38,13 @@ import {NgxPermissionsModule} from "ngx-permissions";
 import {AdminComponent} from './admin/admin.component';
 import {DialogComponent} from './shared/dialog/dialog.component';
 import {TrainingDetailsComponent} from './training/training-details/training-details.component';
-import {BookedTrainingsComponent} from "./user/trainings/booked-trainings.component";
+import {TrainingsListComponent} from "./shared/trainings/trainings-list.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { MentorTrainingsComponent } from './mentor/mentor-trainings/mentor-trainings.component';
+import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
+import {MatMomentDatetimeModule} from "@mat-datetimepicker/moment";
+import {MomentDateModule} from "@angular/material-moment-adapter";
+import * as moment from 'moment';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     AdminComponent,
     DialogComponent,
     TrainingDetailsComponent,
-    BookedTrainingsComponent
+    TrainingsListComponent,
+    MentorTrainingsComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +79,10 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatPaginatorModule,
     MatSelectModule,
     MatDatepickerModule,
+    MatDatepickerModule,
+    MatMomentDatetimeModule,
+    MatDatetimepickerModule,
+    MomentDateModule,
     MatNativeDateModule,
     MatToolbarModule,
     MatDialogModule,

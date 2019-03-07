@@ -36,6 +36,7 @@ export class AuthoritiesComponent implements OnInit {
 
   enableLockButtons(row) {
     this.selectedRow = row;
+    console.log(row);
   }
 
   alreadyLocked(): boolean {
@@ -66,5 +67,9 @@ export class AuthoritiesComponent implements OnInit {
     this.authorityService.unlockAuthority(this.selectedRow.email).subscribe(
       () => this.refreshData()
     )
+  }
+
+  shouldHighlightRow(row: any) {
+    return !!this.selectedRow && this.selectedRow.email === row.email;
   }
 }

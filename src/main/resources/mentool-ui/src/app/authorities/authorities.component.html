@@ -23,7 +23,7 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="enableLockButtons(row)"></tr>
+  <tr mat-row  *matRowDef="let row;  columns: displayedColumns;" class="highlight"  [ngClass]="{'highlight': shouldHighlightRow(row)}" (click)="enableLockButtons(row)"></tr>
 </table>
   <br>
   <button class="btn btn-danger" type="button" (click)="lockSelectedUser()" [disabled]="alreadyLocked()">Lock User</button>

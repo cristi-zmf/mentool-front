@@ -1,3 +1,7 @@
 /deep/.mat-row:hover {
   background: rgba(0, 0, 0, 0.04);
 }
+
+.highlight{
+  background: rgba(0, 0, 0, 0.04); /* green */
+}

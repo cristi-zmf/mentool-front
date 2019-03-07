@@ -10,7 +10,9 @@
           <app-required [form]="trainingForm.get('skillName')" errorMessage="Skill name is required"></app-required>
         </div>
       </label>
-      <app-skill-picker (selectedSkillEmitter)="fillSkillField($event)"></app-skill-picker>
+      <div *ngIf="isCreateMode()">
+        <app-skill-picker (selectedSkillEmitter)="fillSkillField($event)"></app-skill-picker>
+      </div>
     </div>
     <div class="form-group">
       <label>
@@ -60,14 +62,18 @@
         Start date:
         <input type="datetime-local" formControlName="startDate" class="form-control">
       </label>
-      <app-datepicker selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithStartDate($event)"></app-datepicker>
+      <div *ngIf="isCreateMode()">
+        <app-datepicker selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithStartDate($event)"></app-datepicker>
+      </div>
     </div>
     <div class="form-group">
       <label *ngIf="!isCreateMode()">
         End date:
         <input type="datetime-local" formControlName="endDate" class="form-control">
       </label>
-      <app-datepicker selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithEndDate($event)"></app-datepicker>
+      <div *ngIf="isCreateMode()">
+        <app-datepicker  selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithEndDate($event)"></app-datepicker>
+      </div>
     </div>
 
     <div class="form-group">

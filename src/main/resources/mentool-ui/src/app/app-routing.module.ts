@@ -17,7 +17,7 @@ import {MentorTrainingsComponent} from "./mentor/mentor-trainings/mentor-trainin
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'user-registration', component: UserRegistrationComponent},
-  { path: 'authorities', component: AuthoritiesComponent, data: {permissions: {only: Role.MENTOR}}, canActivate: [NgxPermissionsGuard, AuthGuardService]},
+  { path: 'authorities', component: AuthoritiesComponent, data: {permissions: {only: Role.ADMIN}}, canActivate: [NgxPermissionsGuard, AuthGuardService]},
   { path: 'user-profile', component: UserConsultComponent, data: {permission: {only: Role.USER}}, canActivate: [AuthGuardService, NgxPermissionsGuard]},
   { path: 'mentor/view', component: MentorComponent, data: {permissions: {only: Role.MENTOR}}, canActivate: [NgxPermissionsGuard]},
   { path: 'mentor/edit', component: MentorComponent, data: {permissions: {only: Role.MENTOR}}, canActivate: [NgxPermissionsGuard]},

@@ -63,7 +63,8 @@
         <input type="datetime-local" formControlName="startDate" class="form-control">
       </label>
       <div *ngIf="isCreateMode()">
-        <app-datepicker selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithStartDate($event)"></app-datepicker>
+        <app-datepicker selectDatePlaceHolder="Select a date"
+                        (dateEmitter)="fillFormWithStartDate($event)"></app-datepicker>
       </div>
     </div>
     <div class="form-group">
@@ -72,10 +73,20 @@
         <input type="datetime-local" formControlName="endDate" class="form-control">
       </label>
       <div *ngIf="isCreateMode()">
-        <app-datepicker  selectDatePlaceHolder="Select a date" (dateEmitter)="fillFormWithEndDate($event)"></app-datepicker>
+        <app-datepicker selectDatePlaceHolder="Select a date"
+                        (dateEmitter)="fillFormWithEndDate($event)"></app-datepicker>
       </div>
     </div>
-
+    <div>
+      <div *ngIf="trainingForm.hasError('lessThanStartDate')"
+           class="alert alert-danger">
+        <p>End date must be after start date</p>
+      </div>
+      <div *ngIf="trainingForm.hasError('beforeCurrentDate')"
+           class="alert alert-danger">
+        <p>Start date must be after current date or equal</p>
+      </div>
+    </div>
     <div class="form-group">
       <label>
         Price (in USD):
@@ -100,7 +111,8 @@
     <button *ngIf="mode==='create'" class="btn btn-success" type="submit" [disabled]="!trainingForm.valid">Submit
     </button>
     <button *ngIf="mode==='view' && !hasUserRole()" class="btn btn-success" (click)="enterEditMode()">Edit</button>
-    <button *ngIf="mode==='view' && shouldDisplayBookButton()" class="btn btn-success" type="button" (click)="bookTraining()">Book
+    <button *ngIf="mode==='view' && shouldDisplayBookButton()" class="btn btn-success" type="button"
+            (click)="bookTraining()">Book
       Training
     </button>
     <button *ngIf="mode==='view' && shouldDisplayCancelBookingButton()" class="btn btn-danger"

@@ -1,23 +1,27 @@
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Skill} from "../../skill/skill";
+import {DateValidators} from "../../shared/date.validators";
 
-export class TrainingForm extends FormGroup{
+
+let dateValidators = [];
+dateValidators.push(DateValidators.dateAfterEqualOrAfterCurrentDate('startDate', {'beforeCurrentDate': true}));
+dateValidators.push(DateValidators.dateLessThan('startDate', 'endDate', {'lessThanStartDate': true}));
+export class TrainingForm extends FormGroup {
   constructor() {
     super({
       trainingId: new FormControl(''),
       skillName: new FormControl('', [Validators.required]),
-      skillId: new FormControl('', ),
+      skillId: new FormControl(''),
       facilitiesDesc: new FormControl('', [Validators.required]),
       prerequisitesDesc: new FormControl('', [Validators.required]),
-      emailAddress: new FormControl('', [Validators.required, Validators.email]),
+      emailAddress: new FormControl(''),
       noOfTrainingsDone: new FormControl(0, [Validators.required, Validators.pattern("[0-9]")]),
-      mentorName: new FormControl('', [Validators.required]),
-      startDate: new FormControl('', [Validators.required]),
-      endDate: new FormControl('', [Validators.required]),
+      mentorName: new FormControl(''),
+      startDate: new FormControl(null, [Validators.required]),
+      endDate: new FormControl(null, [Validators.required]),
       fee: new FormControl(0, [Validators.required]),
       traineesBooked: new FormControl([])
-
-    });
+    }, dateValidators);
   }
 
   setFormFromDto(trainingData: any) {
@@ -36,7 +40,7 @@ export class TrainingForm extends FormGroup{
     })
   }
 
-  toCreationDto(): any{
+  toCreationDto(): any {
     return {
       skillId: this.get('skillId').value,
       facilitiesDesc: this.get('facilitiesDesc').value,
@@ -58,9 +62,11 @@ export class TrainingForm extends FormGroup{
   }
 
   public updateSkillField(skill: Skill) {
-    this.patchValue({
-      skillName: skill.skillName
-    });
+    if (skill){
+      this.patchValue({
+        skillName: skill.skillName
+      });
+    }
   }
 
   updateStartDate(date: any) {
@@ -73,5 +79,17 @@ export class TrainingForm extends FormGroup{
     this.patchValue({
       endDate: date
     });
+  }
+
+  shouldShowErrorForStartDate(): boolean {
+    return this.shouldShowErrorForDateValidators(this.get('startDate'));
+  }
+
+  shouldShowErrorForEndDate(): boolean {
+    return this.shouldShowErrorForDateValidators(this.get('endDate'));
+  }
+
+  private shouldShowErrorForDateValidators(form: AbstractControl): boolean {
+    return form.dirty || form.touched;
   }
 }

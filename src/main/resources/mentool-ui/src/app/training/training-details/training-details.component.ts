@@ -9,7 +9,6 @@ import {Role} from "../../authorities/role.enum";
 import {TrainingService} from "../training.service";
 import {Skill} from "../../skill/skill";
 import {MentorService} from "../../mentor/mentor.service";
-import {currentId} from "async_hooks";
 
 @Component({
   selector: 'app-training-details',

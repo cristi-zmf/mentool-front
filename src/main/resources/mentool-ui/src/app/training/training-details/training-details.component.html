@@ -63,7 +63,7 @@
         <input type="datetime-local" formControlName="startDate" class="form-control">
       </label>
       <div *ngIf="isCreateMode()">
-        <app-datepicker selectDatePlaceHolder="Select a date"
+        <app-datepicker selectDatePlaceHolder="Select a start date"
                         (dateEmitter)="fillFormWithStartDate($event)"></app-datepicker>
       </div>
     </div>
@@ -73,7 +73,7 @@
         <input type="datetime-local" formControlName="endDate" class="form-control">
       </label>
       <div *ngIf="isCreateMode()">
-        <app-datepicker selectDatePlaceHolder="Select a date"
+        <app-datepicker selectDatePlaceHolder="Select an end date"
                         (dateEmitter)="fillFormWithEndDate($event)"></app-datepicker>
       </div>
     </div>

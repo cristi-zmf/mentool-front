@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TrainingForm} from "./training-form";
 import {ToastrService} from "ngx-toastr";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LoginService} from "../../login/login.service";
 import {AbstractControl} from "@angular/forms";
 import {CurrentUserService} from "../../login/current-user.service";
@@ -9,6 +9,7 @@ import {Role} from "../../authorities/role.enum";
 import {TrainingService} from "../training.service";
 import {Skill} from "../../skill/skill";
 import {MentorService} from "../../mentor/mentor.service";
+import {currentId} from "async_hooks";
 
 @Component({
   selector: 'app-training-details',
@@ -26,7 +27,8 @@ export class TrainingDetailsComponent implements OnInit {
   constructor(
     private toastrService: ToastrService, private trainingService: TrainingService,
     private route: ActivatedRoute, private loginService: LoginService,
-    private currentUserService: CurrentUserService, mentorService: MentorService
+    private currentUserService: CurrentUserService, mentorService: MentorService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -163,5 +165,17 @@ export class TrainingDetailsComponent implements OnInit {
 
   fillFormWithEndDate(date: any) {
     this.trainingForm.updateEndDate(date);
+    console.log(this.trainingForm.errors);
+    console.log(this.trainingForm.valid);
+  }
+
+  onSubmit() {
+    this.trainingForm.updateMentorEmail(this.currentUserService.getCurrentUser().username);
+    this.trainingService.addTraining(this.trainingForm.toCreationDto()).subscribe(
+      (newTrainingId) =>{
+        console.log(newTrainingId);
+        this.router.navigate([`trainings/view/${newTrainingId}`]);
+      }
+  )
   }
 }

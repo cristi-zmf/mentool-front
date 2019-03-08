@@ -40,6 +40,10 @@ export class TrainingService {
     return this.httpClient.get(`${MENTORS_API}/${email}/trainings`);
   }
 
+  addTraining(trainingAddCommand: any): Observable<any> {
+    return this.httpClient.post(`${MENTORS_API}/trainings`, trainingAddCommand);
+  }
+
   private escapeEmailSpecialCharacter(userEmail: string) {
     return userEmail.replace('@', '%40');
   }

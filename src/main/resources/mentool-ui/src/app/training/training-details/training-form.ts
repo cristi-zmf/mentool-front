@@ -10,12 +10,12 @@ export class TrainingForm extends FormGroup {
   constructor() {
     super({
       trainingId: new FormControl(''),
-      skillName: new FormControl('', [Validators.required]),
+      skillName: new FormControl(''),
       skillId: new FormControl(''),
       facilitiesDesc: new FormControl('', [Validators.required]),
       prerequisitesDesc: new FormControl('', [Validators.required]),
       emailAddress: new FormControl(''),
-      noOfTrainingsDone: new FormControl(0, [Validators.required, Validators.pattern("[0-9]")]),
+      noOfTrainingsDone: new FormControl(0, [Validators.required, Validators.pattern("[0-9]{1,20}")]),
       mentorName: new FormControl(''),
       startDate: new FormControl(null, [Validators.required]),
       endDate: new FormControl(null, [Validators.required]),
@@ -44,7 +44,7 @@ export class TrainingForm extends FormGroup {
     return {
       skillId: this.get('skillId').value,
       facilitiesDesc: this.get('facilitiesDesc').value,
-      emailAddress: this.get('emailAddress'),
+      emailAddress: this.get('emailAddress').value,
       prerequisitesDesc: this.get('prerequisitesDesc').value,
       noOfTrainingsDone: this.get('noOfTrainingsDone').value,
       startDate: this.get('startDate').value,
@@ -64,7 +64,7 @@ export class TrainingForm extends FormGroup {
   public updateSkillField(skill: Skill) {
     if (skill){
       this.patchValue({
-        skillName: skill.skillName
+        skillId: skill.id
       });
     }
   }
@@ -78,6 +78,12 @@ export class TrainingForm extends FormGroup {
   updateEndDate(date: any) {
     this.patchValue({
       endDate: date
+    });
+  }
+
+  updateMentorEmail(email: any) {
+    this.patchValue({
+      emailAddress: email
     });
   }
 
